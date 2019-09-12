@@ -16,6 +16,8 @@ app = Flask(__name__)
 def webhook():
     print(request)
     print(request.args)
+    print(request.values)
+    print(request.form)
     message = request.get_json()
     print(message)
     return "ok", 200
