@@ -10,9 +10,9 @@ from flask import Flask, request
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS main (AUID int PRIMARY KEY, SSID int);""")
+#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#cur = conn.cursor()
+#cur.execute("""CREATE TABLE IF NOT EXISTS main (AUID int PRIMARY KEY, SSID int);""")
 
 app = Flask(__name__)
 AUTH = os.getenv('AUTH')
