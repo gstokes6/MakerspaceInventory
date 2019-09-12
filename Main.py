@@ -14,6 +14,8 @@ app = Flask(__name__)
 # That'll happen every time a message is sent in the group
 @app.route('/', methods=['POST'])
 def webhook():
+    print(request)
+    print(request.args)
     message = request.get_json()
     print(message)
     return "ok", 200
