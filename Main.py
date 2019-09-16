@@ -42,7 +42,7 @@ def webhook():
         cur = conn.cursor()
         cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID int, SSID int, Training int, Checkout int);""")
         cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID int, SSID int);""")
-        conn.comit()
+        conn.commit()
         if RequestType == 'Add':
             if Type == 'Users':
                 AddUser(conn,cur,Data)
