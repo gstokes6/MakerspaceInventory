@@ -31,7 +31,7 @@ def webhook():
             'SSID':request.form.get('Data[SSID]'),
             'Training':request.form.get('Data[Training]'),
             'Checkout':request.form.get('Data[Checkout]'),
-            'Brand':request.form.get('Data[Brand]')
+            'Brand':request.form.get('Data[Brand]'),
             'ToolType':request.form.get('Data[ToolType]')
         }
 
