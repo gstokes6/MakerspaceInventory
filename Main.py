@@ -44,14 +44,14 @@ def webhook():
         cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID int, SSID int);""")
         conn.commit()
         if RequestType == 'Add':
-            if Type == 'Users':
+            if ItemType == 'Users':
                 AddUser(conn,cur,Data)
-            elif Type =='Tools':
+            elif ItemType =='Tools':
                 AddTool(con,cur,)
         elif RequestType == 'Get':
-            if Type == 'Users':
+            if ItemType == 'Users':
                 GetUsers(con,cur,)
-            elif Type == 'Tools':
+            elif ItemType == 'Tools':
                 GetTools(con,cur,)
     cur.close()
     conn.close()
