@@ -40,9 +40,9 @@ def webhook():
         print("authorized")
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
-        cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID int, SSID int, Training int, Checkout int);""")
-        cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID int, SSID int);""")
-        conn.commit()
+##        cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID int, SSID int, Training int, Checkout int);""")
+##        cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID int, SSID int);""")
+##        conn.commit()
         if RequestType == 'Add':
             if ItemType == 'Users':
                 AddUser(conn,cur,Data)
