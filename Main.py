@@ -23,11 +23,15 @@ print('V1')
 # That'll happen every time a message is sent in the group
 @app.route('/', methods=['POST'])
 def webhook():
+    print('invoked')
     RequestType = request.form.get('RequestType')
     Auth = request.form.get('Auth')
     if Auth == AUTH:
         Type = request.form.get('RequestParams[Type]')
         print("Oatherized")
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cur = conn.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS main (AUID int PRIMARY KEY, SSID int);""")
 
     
     return "ok", 200
