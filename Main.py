@@ -22,11 +22,13 @@ print('V1')
 # Called whenever the app's callback URL receives a POST request
 # That'll happen every time a message is sent in the group
 @app.route('/', methods=['POST'])
+@ssl_required
 def webhook():
     RequestType = request.form.get('RequestType')
     Auth = request.form.get('Auth')
     if Auth == AUTH:
         Type = request.form.get('RequestParams[Type]')
+        print("Oatherized")
 
     
     return "ok", 200
