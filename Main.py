@@ -31,7 +31,7 @@ def webhook():
         print("Oatherized")
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
-        cur.execute("""CREATE TABLE IF NOT EXISTS main (AUID int PRIMARY KEY, SSID int);""")
+        cur.execute("""CREATE TABLE IF NOT EXISTS main (auid INT, ssid int);""")
 
     
     return "ok", 200
