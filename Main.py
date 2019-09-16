@@ -25,16 +25,52 @@ print('V1')
 def webhook():
     print('invoked')
     RequestType = request.form.get('RequestType')
+    ItemType = request.form.get('ItemType')
     Auth = request.form.get('Auth')
-    if Auth == AUTH:
-        Type = request.form.get('RequestParams[Type]')
-        print("Oatherized")
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        cur = conn.cursor()
-        cur.execute("""CREATE TABLE IF NOT EXISTS main (auid INT, ssid int);""")
+    Data = {'AUID':request.form.get('Data[AUID]'),
+            'SSID':request.form.get('Data[SSID]'),
+            'Training':request.form.get('Data[Training]'),
+            'Checkout':request.form.get('Data[Checkout]'),
+            'Brand':request.form.get('Data[Brand]')
+            'ToolType':request.form.get('Data[ToolType]')
+        }
 
     
+    if Auth == AUTH:
+        print("authorized")
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cur = conn.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID int, SSID int, Training int, Checkout int);""")
+        cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID int, SSID int);""")
+        conn.comit()
+        if RequestType == 'Add':
+            if Type == 'Users':
+                AddUser(conn,cur,Data)
+            elif Type =='Tools':
+                AddTool(con,cur,)
+        elif RequestType == 'Get':
+            if Type == 'Users':
+                GetUsers(con,cur,)
+            elif Type == 'Tools':
+                GetTools(con,cur,)
+    cur.close()
+    conn.close()
     return "ok", 200
 
 
+def AddUser(conn,cur,Data):
+    sql = "INSERT INTO Users (AUID, SSID, Training) VALUES (%s, %s, %s, %s)",(Data['AUID'],Data['SSID'],Data['Training'])
+    cur.execute(sql)
+    conn.commit()
+
+def AddTool(con,cur,AUID,SSID,Brand,ToolType,Training):
+    sql = "INSERT INTO Tools (AUID,SSID,Brand,ToolType,Training) VALUES (%s, %s, %s, %s, %s)",(AUID,SSID,Training,Checkout)
+
+
+def GetUser(con,cur,AUID,SSID,Training,Checkout):
+    sql = ""
+
+
+def GetTool(con,cur,AUID,SSID,Brand,ToolType,Training,Checkout):
+    sql = ""
 
