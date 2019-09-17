@@ -70,11 +70,10 @@ def AddTool(conn,cur,AUID,SSID,Brand,ToolType,Training):
 def GetUser(conn,cur,Data):
     for key, value in Data.items():
         if value == None:
-            Data[key] = "'%'"
+            Data[key] = '%'
     sql = '''SELECT * FROM Users WHERE AUID LIKE %s
 and SSID LIKE %s
-and Training LIKE %s'
-'''
+and Training LIKE %s'''
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     results = cur.fetchall()
     cur.close()
