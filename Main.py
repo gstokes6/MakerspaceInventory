@@ -50,7 +50,7 @@ def webhook():
                 AddTool(con,cur,)
         elif RequestType == 'Get':
             if ItemType == 'Users':
-                return GetUser(conn,cur,AUID,SSID,Training,Checkout), 200
+                return GetUser(conn,cur,Data), 200
             elif ItemType == 'Tools':
                 GetTool(con,cur,)
     cur.close()
@@ -67,7 +67,7 @@ def AddTool(conn,cur,AUID,SSID,Brand,ToolType,Training):
     sql = "INSERT INTO Tools (AUID,SSID,Brand,ToolType,Training) VALUES (%s, %s, %s, %s, %s)",(AUID,SSID,Training,Checkout)
 
 
-def GetUser(conn,cur,AUID,SSID,Training,Checkout):
+def GetUser(conn,cur,Data):
     for key, value in data.items():
         if value == None:
             data[key] = "'%'"
