@@ -73,7 +73,8 @@ def GetUser(con,cur,AUID,SSID,Training,Checkout):
             data[key] = "'%'"
     sql = '''SELECT * FROM Users WHERE AUID LIKE %s
 and SSID LIKE %s
-and Training LIKE %s''''
+and Training LIKE %s'
+'''
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     results = cur.fetchall()
     return results
