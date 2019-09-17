@@ -50,9 +50,9 @@ def webhook():
                 AddTool(con,cur,)
         elif RequestType == 'Get':
             if ItemType == 'Users':
-                return GetUsers(con,cur,AUID,SSID,Training,Checkout), 200
+                return GetUser(con,cur,AUID,SSID,Training,Checkout), 200
             elif ItemType == 'Tools':
-                GetTools(con,cur,)
+                GetTool(con,cur,)
     cur.close()
     conn.close()
     return "ok", 200
