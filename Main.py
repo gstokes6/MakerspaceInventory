@@ -59,21 +59,21 @@ def webhook():
 
 
 def AddUser(conn,cur,Data):
-    sql = "INSERT INTO Users (AUID, SSID, Training) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO users (AUID, SSID, Training) VALUES (%s, %s, %s)"
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     conn.commit()
 
 def AddTool(conn,cur,AUID,SSID,Brand,ToolType,Training):
-    sql = "INSERT INTO Tools (AUID,SSID,Brand,ToolType,Training) VALUES (%s, %s, %s, %s, %s)",(AUID,SSID,Training,Checkout)
+    sql = "INSERT INTO tools (AUID,SSID,Brand,ToolType,Training) VALUES (%s, %s, %s, %s, %s)",(AUID,SSID,Training,Checkout)
 
 
 def GetUser(conn,cur,Data):
     for key, value in Data.items():
         if value == None:
             Data[key] = '%'
-    sql = '''SELECT * FROM Users WHERE AUID LIKE %s
-and SSID LIKE %s
-and Training LIKE %s'''
+    sql = '''SELECT * FROM users WHERE AUID LIKE %s
+AND SSID LIKE %s
+AND Training LIKE %s'''
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     results = cur.fetchall()
     cur.close()
