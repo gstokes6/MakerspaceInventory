@@ -3,6 +3,7 @@ import os
 import json
 import requests
 import psycopg2
+from flask import jsonify
 
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -50,7 +51,7 @@ def webhook():
                 AddTool(con,cur,)
         elif RequestType == 'Get':
             if ItemType == 'Users':
-                return GetUser(conn,cur,Data), 200
+                return jsonify(GetUser(conn,cur,Data)), 200
             elif ItemType == 'Tools':
                 GetTool(con,cur,)
     cur.close()
