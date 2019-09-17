@@ -50,7 +50,7 @@ def webhook():
                 AddTool(con,cur,)
         elif RequestType == 'Get':
             if ItemType == 'Users':
-                return GetUser(con,cur,AUID,SSID,Training,Checkout), 200
+                return GetUser(conn,cur,AUID,SSID,Training,Checkout), 200
             elif ItemType == 'Tools':
                 GetTool(con,cur,)
     cur.close()
@@ -63,11 +63,11 @@ def AddUser(conn,cur,Data):
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     conn.commit()
 
-def AddTool(con,cur,AUID,SSID,Brand,ToolType,Training):
+def AddTool(conn,cur,AUID,SSID,Brand,ToolType,Training):
     sql = "INSERT INTO Tools (AUID,SSID,Brand,ToolType,Training) VALUES (%s, %s, %s, %s, %s)",(AUID,SSID,Training,Checkout)
 
 
-def GetUser(con,cur,AUID,SSID,Training,Checkout):
+def GetUser(conn,cur,AUID,SSID,Training,Checkout):
     for key, value in data.items():
         if value == None:
             data[key] = "'%'"
@@ -77,6 +77,8 @@ and Training LIKE %s'
 '''
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     results = cur.fetchall()
+    cur.close()
+    conn.close()
     return results
 
 
