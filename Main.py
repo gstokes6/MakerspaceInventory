@@ -50,7 +50,7 @@ def webhook():
                 AddTool(con,cur,)
         elif RequestType == 'Get':
             if ItemType == 'Users':
-                GetUsers(con,cur,)
+                return GetUsers(con,cur,AUID,SSID,Training,Checkout), 200
             elif ItemType == 'Tools':
                 GetTools(con,cur,)
     cur.close()
@@ -68,7 +68,15 @@ def AddTool(con,cur,AUID,SSID,Brand,ToolType,Training):
 
 
 def GetUser(con,cur,AUID,SSID,Training,Checkout):
-    sql = ""
+    for key, value in data.items():
+        if value == None:
+            data[key] = "'%'"
+    sql = '''SELECT * FROM Users WHERE AUID LIKE %s
+and SSID LIKE %s
+and Training LIKE %s''''
+    cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
+    results = cur.fetchall()
+    return results
 
 
 def GetTool(con,cur,AUID,SSID,Brand,ToolType,Training,Checkout):
