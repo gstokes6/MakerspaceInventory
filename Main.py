@@ -59,7 +59,7 @@ def webhook():
 
 
 def AddUser(conn,cur,Data):
-    sql = "INSERT INTO Users (AUID, SSID, Training) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO Users (AUID, SSID, Training) VALUES (%s, %s, %s)"
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     conn.commit()
 
