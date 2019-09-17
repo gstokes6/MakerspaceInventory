@@ -59,8 +59,8 @@ def webhook():
 
 
 def AddUser(conn,cur,Data):
-    sql = "INSERT INTO Users (AUID, SSID, Training) VALUES (%s, %s, %s, %s)"(Data['AUID'],Data['SSID'],Data['Training'])
-    cur.execute(sql)
+    sql = "INSERT INTO Users (AUID, SSID, Training) VALUES (%s, %s, %s, %s)"
+    cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     conn.commit()
 
 def AddTool(con,cur,AUID,SSID,Brand,ToolType,Training):
