@@ -71,7 +71,7 @@ def AddUser(conn,cur,Data):
     
 def RemoveUser(conn,cur,Data):
     sql = "DELETE FROM users WHERE AUID=%s";
-    cur.execute(sql,Data['AUID'])
+    cur.execute(sql,(Data['AUID']))
     conn.commit()
 
 def AddTool(conn,cur,AUID,SSID,Brand,ToolType,Training):
