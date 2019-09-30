@@ -70,7 +70,7 @@ def AddUser(conn,cur,Data):
     conn.commit()
     
 def RemoveUser(conn,cur,Data):
-    sql = "DELETE FROM users WHERE AUID=%s";
+    sql = "DELETE FROM users WHERE AUID = %s";
     cur.execute(sql,(Data['AUID']))
     conn.commit()
 
