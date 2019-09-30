@@ -41,8 +41,8 @@ def webhook():
         print("authorized")
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
-        cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID text, SSID text, Training text, Checkout text);""")
-        cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID text, SSID text, Training text, Checkout text);""")
+        #cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID text, SSID text, Training text, Checkout text);""")
+        #cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID text, SSID text, SSUser text, SSPass text, Training text, Checkout text);""")
 ##        conn.commit()
         if RequestType == 'Add':
             if ItemType == 'Users':
@@ -63,6 +63,11 @@ def AddUser(conn,cur,Data):
     sql = "INSERT INTO users (AUID, SSID, Training) VALUES (%s, %s, %s)"
     cur.execute(sql,(Data['AUID'],Data['SSID'],Data['Training']))
     conn.commit()
+    
+def RemoveUser(conn,cur,Data):
+    sql = "DELETE FROM users WHERE AUID=%s";
+    cur.execute(sql,Data['AUID'])
+    conn.commit()
 
 def AddTool(conn,cur,AUID,SSID,Brand,ToolType,Training):
     sql = "INSERT INTO tools (AUID,SSID,Brand,ToolType,Training) VALUES (%s, %s, %s, %s, %s)",(AUID,SSID,Training,Checkout)
@@ -72,6 +77,8 @@ def GetUser(conn,cur,Data):
     for key, value in Data.items():
         if value == None:
             Data[key] = '%'
+        else:
+            Data[key] = '%'+value+'%'
     sql = '''SELECT * FROM users WHERE AUID LIKE %s
 AND SSID LIKE %s
 AND Training LIKE %s'''
