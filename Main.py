@@ -54,6 +54,11 @@ def webhook():
                 return jsonify(GetUser(conn,cur,Data)), 200
             elif ItemType == 'Tools':
                 GetTool(con,cur,)
+        elif RequestType == 'Remove':
+            if ItemType == 'Users':
+                RemoveUser(conn,cur,Data)
+            elif ItemType == 'Tools':
+                RemoveTool(conn,cur,Data)
     cur.close()
     conn.close()
     return "ok", 200
