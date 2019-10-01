@@ -11,9 +11,9 @@ from flask import Flask, request
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS main (AUID int PRIMARY KEY, SSID int);""")
+##conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+##cur = conn.cursor()
+##cur.execute("""CREATE TABLE IF NOT EXISTS main (AUID int PRIMARY KEY, SSID int);""")
 
 
 
@@ -47,9 +47,9 @@ def webhook():
         print("authorized")
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
-        #cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID text, SSID text, Training text, Checkout text);""")
-        #cur.execute("""CREATE TABLE IF NOT EXISTS Users (AUID text, SSID text, SSUser text, SSPass text, Training text, Checkout text);""")
-##        conn.commit()
+        cur.execute("""CREATE TABLE IF NOT EXISTS Tools (AUID text, SSID text, Training text, Checkout text);""")
+        cur.execute("""CREATE TABLE IF NOT EXISTS Users (First text, Last text, Year text, Degree text, AUID text, SSID text, SSUser text, SSPass text, Training text, Checkout text);""")
+        conn.commit()
         if RequestType == 'Add':
             if ItemType == 'Users':
                 AddUser(conn,cur,Data)
